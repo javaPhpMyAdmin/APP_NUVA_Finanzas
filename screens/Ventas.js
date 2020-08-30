@@ -1,16 +1,29 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity, ScrollView, Keyboard, TouchableWithoutFeedback } from 'react-native';
-import { Formik, resetForm } from 'formik';
+import { Formik } from 'formik';
 import { LinearGradient } from 'expo-linear-gradient';
+import DateTimePicker from '@react-native-community/datetimepicker'
+import moment from 'moment'
 
 
 export default Ventas = () =>{
+
+    const [show, setShow] = useState(false)
+    const [mode, setMode] = useState('date');
+    const [showData, setShowData] = useState(false)
+    const [fecha, setFecha] = useState('')
+
+
+      const showDatepicker = () => {
+        setShow(!show)
+      };
+
     return(
         <ScrollView style={styles.container1}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <Formik 
                 
-                initialValues={{cliente: '', numero_documento:'', fecha_venta: '' }}
+                initialValues={{cliente: '', numero_documento:'', fecha_venta: new Date()}}
                 onSubmit={(values, action)=>{
                     console.log('desde submit');
                     console.log(values);
@@ -51,14 +64,41 @@ export default Ventas = () =>{
                     <Text style={[styles.text_footer, { marginTop: 35}]}>
                         Fecha
                     </Text>
-                    <View style={styles.action}> 
-                            <TextInput 
-                                placeholder= 'Fecha venta...'
-                                style={styles.textInput}
-                                value={props.values.fecha_venta}
-                                onChangeText={props.handleChange('fecha_venta')}
-                            />               
-                    </View>
+                    {
+                        showData ?
+
+                        <Text 
+                            style={[styles.text_footer, { marginTop: 35}]}
+                        >
+                         {moment(fecha).format('DD-MM-YYYY')} 
+                        </Text>
+                        :
+                        <Text 
+                            style={[styles.text_footer, { marginTop: 35}]}
+                        >
+                         Fecha 
+                        </Text>
+                    }
+                    
+                    <View>
+                        <Button onPress={showDatepicker} title="Show time picker!" />
+                     </View>
+                    {show && (
+                        <DateTimePicker
+                            testID="dateTimePicker"
+                            value={props.values.fecha_venta}
+                            mode={mode}
+                            is24Hour={true}
+                            display="default"
+                            onChange={(fecha_venta,date) => {
+                                setShow(false);
+                                setShowData(true);
+                                setFecha(moment(date));
+                                //console.log(fecha)
+                                
+                            }}
+                        />
+                    )}
 
                     <Text style={[styles.text_footer, { marginTop: 35}]}>
                         Moneda
