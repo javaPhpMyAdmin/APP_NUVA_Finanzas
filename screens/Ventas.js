@@ -94,7 +94,7 @@ export default Ventas = () =>{
                                 setShow(false);
                                 setShowData(true);
                                 setFecha(moment(date));
-                                //console.log(fecha)
+                                console.log(fecha)
                                 
                             }}
                         />
