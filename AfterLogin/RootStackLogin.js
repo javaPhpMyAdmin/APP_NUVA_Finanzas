@@ -18,7 +18,7 @@ const TabNavigator = createBottomTabNavigator({
     },
      { 
        defaultNavigationOptions: { 
-        headerShown: false,
+        headerShown: true,
       }
     }),
   
