@@ -13,12 +13,12 @@ import Fondos from '../screens/Fondos'
 const TabNavigator = createBottomTabNavigator({
     RESUMEN: createStackNavigator({
         RESUMEN: Home,
-        //ReviewDetails: ReviewDetails,
+        VENTAS: Ventas,
         headerMode: 'screen',          
     },
      { 
        defaultNavigationOptions: { 
-        headerShown: true,
+        headerShown: false,
       }
     }),
   
