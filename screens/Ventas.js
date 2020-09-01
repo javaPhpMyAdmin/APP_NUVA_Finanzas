@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import { RadioGroup, Radio, StyleSheet, Text, View, Button, TextInput, TouchableOpacity, ScrollView, Keyboard, TouchableWithoutFeedback } from 'react-native';
-import { Formik, Field, Form } from 'formik';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, ScrollView, Keyboard, TouchableWithoutFeedback } from 'react-native';
+import { Formik } from 'formik';
 import { LinearGradient } from 'expo-linear-gradient';
 import DateTimePicker from '@react-native-community/datetimepicker'
 import moment from 'moment'
@@ -17,7 +17,7 @@ export default Ventas = () =>{
     const [fecha, setFecha] = useState('')
     const [moneda, setMoneda] = useState('pesos')
 
-    const [checked, setChecked] = React.useState('efectivo');
+    const [checked, setChecked] = useState('efectivo');
 
       const showDatepicker = () => {
         setShow(!show)
