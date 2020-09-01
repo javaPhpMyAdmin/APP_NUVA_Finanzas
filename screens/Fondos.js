@@ -3,6 +3,8 @@ import { StyleSheet, Text, View } from 'react-native';
 
 export default Fondos = () =>{
     return(
-        <View><Text>Fondos</Text></View>
+        <View style={{backgroundColor: '#000'}}>
+            <Text>Fondos</Text>
+        </View>
     )
 }
