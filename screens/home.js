@@ -69,8 +69,12 @@ export default class Home extends React.Component{
                         style={{justifyContent:'space-between',flexDirection:'row', paddingLeft: 5, paddingTop: 10, paddingBottom: 10,width:'100%'}}
                     >
                         <Text style={{color: '#fff',paddingLeft: 7, fontSize:33, fontWeight: 'bold'}}>Gastos</Text>
-                        <Text style={{color: '#fff',paddingLeft: 7, fontSize:33, fontWeight: 'bold'}}>$ 873</Text>
-                        <Animatable.View animation='zoomInUp'delay={1500} style={{width:48, alignItems:'center', position:'relative',marginRight:7}}>
+                        <Text style={{color: '#fff',paddingLeft: 23, fontSize:33, fontWeight: 'bold'}}>$ 873</Text>
+                        <Animatable.View 
+                            animation='zoomInUp'
+                            delay={1500} 
+                            style={{width:48, alignItems:'center', position:'relative',marginRight:7}}
+                        >
                             <TouchableOpacity onPress={()=>{this.props.navigation.navigate('VENTAS')}}>
                                 <Ionicons style={{color: '#fff', fontSize:50, fontWeight: 'bold',paddingBottom:5}} name="md-add-circle" size={24} color="black" />
                             </TouchableOpacity>
@@ -83,7 +87,7 @@ export default class Home extends React.Component{
                     >
                         <Text style={{color: '#fff',paddingLeft: 7, fontSize:33, fontWeight: 'bold'}}>Resultado</Text>
                         <View style={{}}>
-                            <Text style={{color: '#fff',paddingLeft: 7, fontSize:33, fontWeight: 'bold'}}>$ 238</Text>
+                            <Text style={{color: '#fff',paddingLeft: 47, fontSize:33, fontWeight: 'bold'}}>$ 238</Text>
                         </View>
                         {/*<Animatable.View animation='zoomInUp'delay={2000} style={{width:48,alignItems:'center',overflow:'hidden',position:'relative',marginRight:7}}>
                             <TouchableOpacity style={{}}>
