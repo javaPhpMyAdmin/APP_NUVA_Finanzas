@@ -6,8 +6,8 @@ export default class App extends React.Component {
   componentDidMount() {
     this.animation.play();
     // Or set a specific startFrame and endFrame with:
-     this.animation.play(30, 120);
-     console.log('me monte')
+    this.animation.play(30, 120);
+    console.log('me monte')
   }
 
   resetAnimation = () => {
@@ -28,8 +28,7 @@ export default class App extends React.Component {
             backgroundColor: '#eee',
           }}
           source={require('../assets/4922-search-files.json')}
-          // OR find more Lottie files @ https://lottiefiles.com/featured
-          // Just click the one you like, place that file in the 'assets' folder to the left, and replace the above 'require' statement
+        // OR find more Lottie files @ https://lottiefiles.com/featured*/
         />
         <View style={styles.buttonContainer}>
           <Button title="Restart Animation" onPress={this.resetAnimation} />
