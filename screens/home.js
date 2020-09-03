@@ -21,7 +21,7 @@ const windowHeight = Dimensions.get('window').height;
     const screenWidth = Dimensions.get('window').width
     
     const data = [
-      { name: 'Ventas', population: 1111, color: 'green', legendFontColor: '#7F7F7F', legendFontSize: 20 },
+      { name: 'Ventas', population: 1111, color: 'red', legendFontColor: '#7F7F7F', legendFontSize: 20 },
       { name: 'Gastos', population: 873, color: 'rgb(0, 0, 255)', legendFontColor: '#7F7F7F', legendFontSize: 20 },
     ]
 
