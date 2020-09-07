@@ -318,4 +318,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 10
     },
+    textSign: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: 'white',
+        marginRight: 2
+    },
 })
