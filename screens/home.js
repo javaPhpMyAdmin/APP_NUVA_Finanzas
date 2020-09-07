@@ -5,6 +5,7 @@ import { PieChart } from 'react-native-chart-kit';
 import { TouchableOpacity, ScrollView } from 'react-native-gesture-handler';
 import { Ionicons } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable'
+import DonutAuto from './DonutChart/TestDonut'
 
 
 
@@ -26,6 +27,29 @@ const windowHeight = Dimensions.get('window').height;
     ]
 
 
+    //<ScrollView >    
+                //</ScrollView> <Animatable.View animation='fadeInDownBig' duration={2000} style={{alignItems: 'center',justifyContent: 'center',/*paddingBottom:'10'*/}}>
+                //</Animatable.View>   <Image
+                //     resizeMode='contain'
+                //     style={styles.logo}
+                //     source={{
+                //         uri: 'https://image.freepik.com/vector-gratis/logotipo-rojo-sobre-fondo-negro_1195-52.jpg',
+                //     }}
+                //     />
+                //     <TouchableOpacity
+                        
+                //     >
+                //         <Text style={{color: 'white',paddingLeft: 5}}>MI EMPRESA</Text>
+                //     </TouchableOpacity>
+                // </Animatable.View>
+
+
+                //footer
+                 // <Animatable.View animation='lightSpeedIn' duration={900} style={{flexDirection:'row', paddingLeft: 5, paddingTop: 10, paddingBottom: 10}}> 
+                //     <Text style={{color: '#fff',paddingLeft: 13, fontSize:30, fontWeight: 'bold'}}>Margen de ganancia</Text>
+                //     <Text style={{color: '#fff',paddingLeft: 20, fontSize:30, fontWeight: 'bold'}}>21 %</Text>
+                // </Animatable.View>
+
 export default class Home extends React.Component{
     constructor(props){
         super(props)
@@ -33,27 +57,13 @@ export default class Home extends React.Component{
     render(){
         return(
             <SafeAreaView style={styles.container}>
-            <ScrollView >    
-                <Animatable.View animation='fadeInDownBig' duration={2000} style={{alignItems: 'center',justifyContent: 'center',/*paddingBottom:'10'*/}}>
-                    <Image
-                    resizeMode='contain'
-                    style={styles.logo}
-                    source={{
-                        uri: 'https://image.freepik.com/vector-gratis/logotipo-rojo-sobre-fondo-negro_1195-52.jpg',
-                    }}
-                    />
-                    <TouchableOpacity
-                        
-                    >
-                        <Text style={{color: 'white',paddingLeft: 5}}>MI EMPRESA</Text>
-                    </TouchableOpacity>
-                </Animatable.View>
-    
+            
+            <ScrollView>
                 <View style={{paddingTop: 15,backgroundColor:'#000'}}>
                     <Animatable.View 
                         animation='lightSpeedIn' 
                         duration={1500} 
-                        style={{justifyContent:'space-between',flexDirection:'row', paddingLeft: 5, paddingTop: 10, /*paddingBottom: 10,*/width:'100%'}}
+                        style={{justifyContent:'space-between',flexDirection:'row', paddingLeft: 5, paddingTop: 50, paddingBottom: 10, width:'100%'}}
                     >
                         <Text style={{color: '#fff', paddingLeft: 7, fontSize:33, fontWeight: 'bold'}}>Ventas</Text>
                         <Text style={{color: '#fff', paddingLeft: 7, fontSize:33, fontWeight: 'bold'}}>$ 1,111</Text>
@@ -107,10 +117,13 @@ export default class Home extends React.Component{
                             paddingLeft="10"
                         />
                 </Animatable.View> 
-                <Animatable.View animation='lightSpeedIn' duration={900} style={{flexDirection:'row', paddingLeft: 5, paddingTop: 10, paddingBottom: 10}}> 
-                    <Text style={{color: '#fff',paddingLeft: 13, fontSize:30, fontWeight: 'bold'}}>Margen de ganancia</Text>
-                    <Text style={{color: '#fff',paddingLeft: 20, fontSize:30, fontWeight: 'bold'}}>21 %</Text>
-                </Animatable.View>
+                <View style={{flexDirection: 'row', paddingTop: 5}}>                  
+                    <Animatable.View animation='lightSpeedIn' duration={900} style={{flexDirection: 'column', alignItems:'center', justifyContent:'center', paddingTop:12}}>
+                        <Text style={{color: '#fff',paddingLeft: 13, fontSize:30, fontWeight: 'bold'}}>Margen de</Text>
+                        <Text style={{color: '#fff',paddingLeft: 5, fontSize:30, fontWeight: 'bold'}}>Ganancia</Text>
+                    </Animatable.View>
+                    <DonutAuto/>
+                </View>
                 </ScrollView>
             </SafeAreaView>
             
