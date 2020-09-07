@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { View, StyleSheet, Dimensions, FlatList, TouchableOpacity } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient';
 import { Text, variables } from 'native-base'
@@ -14,7 +14,7 @@ import { AntDesign } from '@expo/vector-icons';
 export default class TestBarChart extends React.Component {
     constructor(props) {
         super(props)
-        
+
         this.state = {
             max: 0,
             barChartHeight: 0,
@@ -35,12 +35,12 @@ export default class TestBarChart extends React.Component {
         }
     }
 
-    
 
-    landscape =  function changeScreenOrientation() {
-        const a = ScreenOrientation.ScreenOrientationInfo//ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE);
-        console.log('try orientation', a)
-    }   
+
+    landscape = function changeScreenOrientation() {
+        const a = //ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE);//ScreenOrientation.ScreenOrientationInfo
+            console.log('try orientation', a)
+    }
 
     portrait = async function changeScreenOrientation() {
         await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
@@ -52,8 +52,8 @@ export default class TestBarChart extends React.Component {
         this.getBarChartHeight(height)
     }
 
-    componentWillUnmount(){
-       // this.portrait()
+    componentWillUnmount() {
+        // this.portrait()
     }
 
     getBarChartHeight(heightScreen) {
@@ -68,7 +68,7 @@ export default class TestBarChart extends React.Component {
     //     this.getBarChartHeight(heightScreen)
     // }
 
-    getMaxValue(){
+    getMaxValue() {
         const maxVaalue = get(maxBy(items, 'value'), 'value', 1);
         setMax(maxVaalue);
     }
@@ -77,74 +77,74 @@ export default class TestBarChart extends React.Component {
         const { value, month } = item
         const { barChartHeight } = this.state
         const valueY = value * barChartHeight / maxValue
-       
+
 
         return (
-            
+
             <BarChart
                 key={'barChart' + index}
                 height={barChartHeight}
                 valueY={floor(valueY, 2)}
-                style={{ backgroundColor: 'green', borderTopRightRadius:10, borderTopLeftRadius:10 }}
-                labelTop={<Text style={{ textAlign: 'center', color: 'white',paddingTop:10 }}>{value}</Text>}
+                style={{ backgroundColor: 'green', borderTopRightRadius: 10, borderTopLeftRadius: 10 }}
+                labelTop={<Text style={{ textAlign: 'center', color: 'white', paddingTop: 10 }}>{value}</Text>}
                 labelBottom={
                     <Text style={styles.labelBottom}>{month}</Text>
                 }
             >
                 <View ></View>
             </BarChart>
-            
+
         )
     }
 
     render() {
         const { items, barChartHeight } = this.state
         const maxValue = get(maxBy(items, 'value'), 'value', 1)
-        
-        
+
+
         return (
             <View style={styles.container}>
-                <View style={{flexDirection: 'row', justifyContent:'space-between', paddingTop:5, marginLeft:5, marginRight: 15}}>
-                    
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 5, marginLeft: 5, marginRight: 15 }}>
+
                     <TouchableOpacity
-                    onPress={()=>{this.props.navigation.navigate('VENTAS')}}
-                    style={{}}
-                    >    
-                        <View sytle={{flexDirection:'row'}}>
-                            <LinearGradient 
+                        onPress={() => { this.props.navigation.navigate('VENTAS') }}
+                        style={{}}
+                    >
+                        <View sytle={{ flexDirection: 'row' }}>
+                            <LinearGradient
                                 colors={['#5db8fe', '#39cff2']}
-                                style={[styles.signIn, {flexDirection: 'row'}]}
+                                style={[styles.signIn, { flexDirection: 'row' }]}
                             >
-                                <Text style={[styles.textSign, {marginRight: 5}]}>Nueva Venta</Text>
+                                <Text style={[styles.textSign, { marginRight: 5 }]}>Nueva Venta</Text>
                                 <AntDesign name='checkcircleo' size={33} color='#000' />
                             </LinearGradient>
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity
-                    onPress={()=> this.props.navigation.navigate('RootStackLoginScreen')}
-                    >    
-                        <LinearGradient 
+                        onPress={() => this.props.navigation.navigate('RootStackLoginScreen')}
+                    >
+                        <LinearGradient
                             colors={['#5db8fe', '#39cff2']}
-                            style={[styles.signIn, {flexDirection: 'row'}]}
+                            style={[styles.signIn, { flexDirection: 'row' }]}
                         >
                             <Text style={[styles.textSign, { marginRight: 3 }]}>Última Venta</Text>
-                            <AntDesign name='form' size={33} color='#000' />   
+                            <AntDesign name='form' size={33} color='#000' />
                         </LinearGradient>
                     </TouchableOpacity>
-                   
+
                 </View>
-                
+
                 <ScrollView /*onLayout={(e)=>{this._onLayout(e)}}*/ alwaysBounceHorizontal={false} horizontal={true}>
-                
+
                     <View /*onLayout={(e) => this.onLayout(e)}*/ style={styles.content}>
-                            <View style={[styles.barChartContainer, { height: barChartHeight + 80, }]}>
-                                {items.map((item, index) => this.renderBar(item, index, maxValue))}
-                                <View style={styles.borderLine}></View>
-                            </View>
-                    </View>               
-                    </ScrollView>     
+                        <View style={[styles.barChartContainer, { height: barChartHeight + 80, }]}>
+                            {items.map((item, index) => this.renderBar(item, index, maxValue))}
+                            <View style={styles.borderLine}></View>
+                        </View>
+                    </View>
+                </ScrollView>
             </View>
-            
+
             // <View>
             //     <Text>hello</Text>
             //     <LinearGradient colors={['#6441A5', '#2a0845']} style={{ flex: 1 }}>
@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
         width: '100%',
         flexDirection: 'row',
         marginLeft: 19,
-        marginRight:10,
+        marginRight: 10,
         borderColor,
         backgroundColor,
     },
