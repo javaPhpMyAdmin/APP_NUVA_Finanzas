@@ -1,27 +1,23 @@
 import React from 'react';
-import { View, StyleSheet, Dimensions } from 'react-native'
+import { View, StyleSheet, Dimensions, FlatList } from 'react-native'
 
-import { Container, Content, Text, variables } from 'native-base'
-
-import { LinearGradient } from 'react-native-linear-gradient'
-
+import { Text, variables } from 'native-base'
 import { get, maxBy, floor } from 'lodash'
 import BarChart from './index'
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default class ScreenMotion extends React.Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            barChartHeight: 0,
+            barChartHeight: 400,
             items: [
-                { value: 400 },
-                { value: 70 },
-                { value: 600 },
-                { value: 50 },
-                { value: 30 },
-                { value: 500 },
+                { value: 400, month: 'Enero' },
+                { value: 70, month: 'Febrero' },
+                { value: 600, month: 'Marzo' },
+                { value: 50, month: 'Abril' },
+                { value: 30, month: 'Mayo' },
+                { value: 500, month: 'Junio' },
             ]
         }
     }
@@ -32,21 +28,23 @@ export default class ScreenMotion extends React.Component {
         this.getBarChartHeight(height)
     }
 
-    getBarChartHeight(height) {
+    getBarChartHeight(heightScreen) {
         this.setState({
-            barChartHeight: height - variables.toolbarHeight - 200
+            barChartHeight: heightScreen - variables.toolbarHeight - 200
         })
     }
 
-    onLayout = ({ nativeEvent }) => {
+    _onLayout = (e) => {
         console.log('incline')
-        const { height } = nativeEvent.onLayout
-        this.getBarChartHeight(height)
+        const heightScreen =  700//e.nativeEvent.layout.height
+        this.getBarChartHeight(heightScreen)
     }
 
-    renderBar({ value }, index, maxValue) {
+    renderBar(item, index, maxValue) {
+        const { value, month } = item
         const { barChartHeight } = this.state
         const valueY = value * barChartHeight / maxValue
+       
 
         return (
 
@@ -54,13 +52,13 @@ export default class ScreenMotion extends React.Component {
                 key={'barChart' + index}
                 height={barChartHeight}
                 valueY={floor(valueY, 2)}
-                style={{ backgroundColor: '#8AC5F6' }}
-                labelTop={<Text style={{ textAlign: 'center' }}>{value}</Text>}
+                style={{ backgroundColor: 'green', borderTopRightRadius:10, borderTopLeftRadius:10 }}
+                labelTop={<Text style={{ textAlign: 'center', color: 'white' }}>{value}</Text>}
                 labelBottom={
-                    <Text style={styles.labelBottom}>{index + 1}</Text>
+                    <Text style={styles.labelBottom}>{month}</Text>
                 }
             >
-                <View></View>
+                <View ></View>
             </BarChart>
 
         )
@@ -73,9 +71,13 @@ export default class ScreenMotion extends React.Component {
         return (
 
             <View>
-                <View style={[styles.barChartContainer, { height: barChartHeight + 50 }]}>
-                    {items.map((item, index) => this.renderBar(item, index, maxValue))}
-                    <View style={styles.borderLine}></View>
+                <View style={styles.container}>
+                <View /*onLayout={(e) => this.onLayout(e)}*/ style={styles.content}>
+                        <View style={[styles.barChartContainer, { height: barChartHeight + 50, }]}>
+                            {items.map((item, index) => this.renderBar(item, index, maxValue))}
+                            <View style={styles.borderLine}></View>
+                        </View>
+                </View>               
                 </View>
             </View>
             // <View>
@@ -97,18 +99,21 @@ export default class ScreenMotion extends React.Component {
 }
 
 
-const backgroundColor = 'white'
-const borderColor = '#D3D3D3'
+const backgroundColor = '#000'
+const borderColor = 'red'
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'transparent'
+        backgroundColor: 'red',
+        height: '100%'
     },
     content: {
         flex: 1,
-        padding: 10,
+        paddingTop: 50,
+        padding: 5,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: 'red'
     },
     title: {
         flex: 3
@@ -120,24 +125,26 @@ const styles = StyleSheet.create({
         alignItems: 'flex-end',
         overflow: 'hidden',
         justifyContent: 'space-between',
-        maxWidth: 400,
-        borderWidth: 1,
+        maxWidth: 900,
+        borderWidth: 0,
         borderColor,
         paddingTop: 10,
         marginBottom: 10,
         backgroundColor,
+        
     },
     labelBottom: {
-        height: 20,
+        height: 30,
         textAlign: 'center',
         backgroundColor,
+        color: 'white',
     },
     borderLine: {
         width: '100%',
         position: 'absolute',
         borderWidth: 0.5,
         borderColor: 'black',
-        bottom: 20
+        bottom: 10
     }
 })
 
