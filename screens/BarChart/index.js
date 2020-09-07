@@ -9,11 +9,10 @@ export class BarChart extends Component {
         const { height, valueY, contentContainerStyle, style, labelTop, children, labelBottom, ...rest } = this.props
 
         const value = height - valueY;
-
         return (
             <View style={[styles.barContainer, contentContainerStyle]}>
                 <TouchableOpacity onPress={() => alert('desde barChart')}>
-                    <TranslateY startOnDidMount animateOnDidMount initialValue={height} value={value} {...rest}>
+                    <TranslateY  startOnDidMount animateOnDidMount initialValue={height} value={value} {...rest}>
                         {labelTop}
                         <View style={[style, { height }]}>
                             <View style={{ height: valueY }}>
@@ -31,8 +30,11 @@ export class BarChart extends Component {
 
 const styles = StyleSheet.create({
     barContainer: {
-        width: 50,
-        overflow: 'hidden'
+        width: 92,
+        overflow: 'visible',
+        borderTopLeftRadius:10,
+        borderTopRightRadius: 10,
+        padding: 7
     }
 });
 
