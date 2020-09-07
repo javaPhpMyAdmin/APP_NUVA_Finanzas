@@ -13,6 +13,10 @@ import Fondos from '../screens/Fondos'
 
 import ScreenMotion from '../screens/BarChart/motion'
 
+import TestBarChart from '../screens/BarChart/TestBarChart'
+
+import DonutAuto from '../screens/DonutChart/TestDonut'
+
 const TabNavigator = createBottomTabNavigator({
   RESUMEN: createStackNavigator({
     RESUMEN: Home,
@@ -53,7 +57,7 @@ const TabNavigator = createBottomTabNavigator({
   // }),
 
   FONDOS: createStackNavigator({
-    FONDOS: ScreenMotion, //SOLO PARA TESTING, IRIA EN VENTAS ORIGINALMENTE
+    FONDOS: TestBarChart, //ScreenMotion, //SOLO PARA TESTING, IRIA EN VENTAS ORIGINALMENTE
   }, {
     defaultNavigationOptions: {
       headerShown: false,
