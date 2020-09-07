@@ -256,7 +256,7 @@ export default Ventas = () =>{
                                 colors={['#5db8fe', '#39cff2']}
                                 style={styles.signIn}
                             >
-                                <Text style={styles.textSign}>Agregar Venta</Text>
+                                <Text style={[styles.textSign, {color: 'white'} ]}>Agregar Venta</Text>
                             </LinearGradient>
                         </View>
                     </TouchableOpacity>
@@ -317,5 +317,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 10
+    },
+    textSign: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: 'white',
+        marginRight: 2
     },
 })
