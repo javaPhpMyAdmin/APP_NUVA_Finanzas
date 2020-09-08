@@ -8,9 +8,15 @@ import SplashComponent from './SplashComponent';
 import SignInComponent from './SignInComponent';
 import SignUpComponent from './SignUpComponent';
 
+
+//SOLO PARA TESTING DESPUES ELIMINAR COMPONENTE
+
+import Lottie from '../screens/auxPieChart'
+//
+
 const StackNavigator = createStackNavigator({
     SplashScreen: {
-        screen: SplashComponent,
+        screen: Lottie,//SplashComponent,
         navigationOptions: {
             headerShown: false
         }
