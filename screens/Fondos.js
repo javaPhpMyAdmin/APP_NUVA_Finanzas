@@ -27,7 +27,7 @@ export default class Fondos extends React.Component {
             height: 400,
             backgroundColor: '#eee',
           }}
-          source={require('../assets/4922-search-files.json')}
+          source={require('../assets/24843-credit-cards_')}
         // OR find more Lottie files @ https://lottiefiles.com/featured*/
         />
         <View style={styles.buttonContainer}>
