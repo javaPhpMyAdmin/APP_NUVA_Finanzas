@@ -1,4 +1,4 @@
-import {createAppContainer} from 'react-navigation'
+import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 import HandlerStack from '../AfterLogin/HandlerStack'
 
@@ -16,7 +16,7 @@ import Lottie from '../screens/auxPieChart'
 
 const StackNavigator = createStackNavigator({
     SplashScreen: {
-        screen: Lottie,//SplashComponent,
+        screen: SplashComponent,
         navigationOptions: {
             headerShown: false
         }
