@@ -17,10 +17,18 @@ import TestBarChart from '../screens/BarChart/TestBarChart'
 
 import DonutAuto from '../screens/DonutChart/TestDonut'
 
+import ReporteVentas from '../screens/ReporteVentas'
+import ReporteGastos from '../screens/ReporteGastos'
+
+import Lottie from '../screens/auxPieChart'
+
 const TabNavigator = createBottomTabNavigator({
   RESUMEN: createStackNavigator({
     RESUMEN: Home,
     VENTAS: Ventas,
+    AUXPIECHART: Lottie,
+    REPORTEVENTAS: ReporteVentas,
+    REPORTEGASTOS: ReporteGastos,
     headerMode: 'screen',
   },
     {
