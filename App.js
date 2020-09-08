@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 // import {createStackNavigator, headerStyle} from 'react-navigation-stack';
 // import {createAppContainer} from 'react-navigation';
 // import {createBottomTabNavigator} from 'react-navigation-tabs';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 // import {Ionicons, AntDesign} from '@expo/vector-icons';
 
 
