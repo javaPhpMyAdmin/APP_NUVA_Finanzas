@@ -1,8 +1,9 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image,  TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 import LottieView from 'lottie-react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-
+import * as Animatable from 'react-native-animatable'
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default class Fondos extends React.Component {
   componentDidMount() {
@@ -12,93 +13,121 @@ export default class Fondos extends React.Component {
   }
 
 
-        //<LottieView
-        //   ref={animation1 => {
-        //     this.animation1 = animation1;
-        //   }}
-        //   style={{
-        //     width: 130,
-        //     height: 130,
-        //     backgroundColor: '#000',
-        //     marginLeft: 0,
-        //   }}
-        //   source={require('../assets/24843-credit-cards (1)')}
-        // // OR find more Lottie files @ https://lottiefiles.com/featured*/
-        // />            
+  //<LottieView
+  //   ref={animation1 => {
+  //     this.animation1 = animation1;
+  //   }}
+  //   style={{
+  //     width: 130,
+  //     height: 130,
+  //     backgroundColor: '#000',
+  //     marginLeft: 0,
+  //   }}
+  //   source={require('../assets/24843-credit-cards (1)')}
+  // // OR find more Lottie files @ https://lottiefiles.com/featured*/
+  // />            
 
-      //   <Image
-      //   //resizeMode='contain'
-      //   style={{ width: 40, height: 40, marginRight: 0, backgroundColor: '#000' }}
-      //   source={require('../assets/18847-add-new-overflowing.gif')}
-      // />
+  //   <Image
+  //   //resizeMode='contain'
+  //   style={{ width: 40, height: 40, marginRight: 0, backgroundColor: '#000' }}
+  //   source={require('../assets/18847-add-new-overflowing.gif')}
+  // />
   render() {
     return (
-       
-        <View style={styles.Container}>
-          <View style={{ flexDirection: 'row', marginTop: 150, marginLeft: 15}}>
-            <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 35 }}>CAJA</Text>
-            <View style={{ flexDirection: 'column', marginLeft: 45}}>
-              <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 35, marginRight: 20 }}>$U</Text>
-              <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 35, marginRight: 20 }}>US$</Text>
-            </View>
-            <View style={{ flexDirection: 'column', marginLeft: 25, paddingBottom: 10, }}>
-              <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 35 }}>10,000</Text>
-              <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 35,  }}>500</Text>
-            </View>
+      <SafeAreaView style={styles.Container}>
+        <View >
+          <View style={{ flexDirection: 'row', marginTop: 150, marginLeft: 15, justifyContent: 'space-between' }}>
+            <Animatable.Text animation='flipInY' duration={1700} style={{ color: 'white', fontWeight: 'bold', fontSize: 30 }}>CAJA</Animatable.Text>
+            <Animatable.View animation='flipInY' duration={1700} delay={1000} style={{ flexDirection: 'column', marginLeft: 45 }}>
+              <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 30, marginRight: 20, paddingLeft: 3 }}>$U</Text>
+              <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 30, marginRight: 20, paddingTop: 12 }}>US$</Text>
+            </Animatable.View>
+            <Animatable.View
+              animation='flipInY'
+              duration={1700}
+              delay={1900}
+              style={{ flexDirection: 'column', paddingBottom: 10, alignItems: 'flex-end', paddingRight: 13 }}>
+              <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 35 }}>1000000</Text>
+              <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 35 }}>5000</Text>
+            </Animatable.View>
           </View>
 
-          <View style={{ flexDirection: 'row', marginTop: 50, marginLeft: 15}}>
-            <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 35 }}>BANCO</Text>
-            <View style={{ flexDirection: 'column', marginLeft: 35}}>
-              <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 35, marginRight: 20 }}>$U</Text>
-              <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 35, marginRight: 20 }}>US$</Text>
-            </View>
-            <View style={{ flexDirection: 'column', marginLeft: 15, paddingBottom: 50}}>
-              <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 35 }}>50,000</Text>
-              <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 35,  }}>1,000</Text>
-            </View>
+          <View style={{ flexDirection: 'row', marginTop: 50, marginLeft: 15, justifyContent: 'space-between' }}>
+            <Animatable.Text animation='flipInY' duration={1700} style={{ color: 'white', fontWeight: 'bold', fontSize: 30 }}>BANCO</Animatable.Text>
+            <Animatable.View animation='flipInY' duration={1700} delay={1000} style={{ flexDirection: 'column', marginLeft: 30 }}>
+              <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 30, marginRight: 20, paddingLeft: 3, }}>$U</Text>
+              <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 30, marginRight: 20, paddingTop: 12 }}>US$</Text>
+            </Animatable.View>
+            <Animatable.View
+              animation='flipInY'
+              duration={1700}
+              delay={1900}
+              style={{ flexDirection: 'column', paddingBottom: 20, alignItems: 'flex-end', paddingRight: 10 }}>
+              <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 35, }}>5000000</Text>
+              <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 35, }}>1000</Text>
+            </Animatable.View>
           </View>
-          
-          <View style={{ flexDirection: 'column', alignItems: 'center'}}>
-          <TouchableOpacity
-                        onPress={()=> this.props.navigation.navigate('RootStackLoginScreen')}
-                    >    
-                        <LinearGradient 
-                            colors={['#5db8fe', '#39cff2']}
-                            style={styles.signIn}
-                        >
-                            <Text style={styles.textSign}>Nuevo Movimiento</Text>
-                        </LinearGradient>
-                    </TouchableOpacity>  
 
+          <View style={{ flexDirection: 'column', alignItems: 'center', justifyContent: 'space-around', marginTop: 60 }}>
+            <Animatable.View
+              style={{ marginBottom: 25 }}
+              animation='fadeInRight'
+              duration={1500}
+              delay={500}
+            >
+              <TouchableOpacity
+                onPress={() => this.props.navigation.navigate('RootStackLoginScreen')}
+              >
+                <LinearGradient
+                  colors={['#5db8fe', '#39cff2']}
+                  style={styles.signIn}
+                >
+                  <Text style={styles.textSign}>Nuevo Movimiento</Text>
+                </LinearGradient>
+              </TouchableOpacity>
+            </Animatable.View>
 
-                    <TouchableOpacity
-                    onPress={()=> this.props.navigation.navigate('RootStackLoginScreen')}
-                >    
-                    <LinearGradient 
-                        colors={['#5db8fe', '#39cff2']}
-                        style={styles.signIn}
-                    >
-                        <Text style={styles.textSign}>Último Movimiento</Text>
-                    </LinearGradient>
-                </TouchableOpacity>
+            <Animatable.View
+              style={{ marginBottom: 25 }}
+              animation='fadeInLeft'
+              duration={1500}
+              delay={1000}
+            >
+              <TouchableOpacity
+                onPress={() => this.props.navigation.navigate('RootStackLoginScreen')}
+              >
+                <LinearGradient
+                  colors={['#5db8fe', '#39cff2']}
+                  style={styles.signIn}
+                >
+                  <Text style={styles.textSign}>Último Movimiento</Text>
+                </LinearGradient>
+              </TouchableOpacity>
+            </Animatable.View>
 
-                <TouchableOpacity
-                    onPress={()=> this.props.navigation.navigate('RootStackLoginScreen')}
-                >    
-                    <LinearGradient 
-                        colors={['#5db8fe', '#39cff2']}
-                        style={styles.signIn}
-                    >
-                        <Text style={styles.textSign}>Emitir Reporte</Text>
-                    </LinearGradient>
-                </TouchableOpacity>
-                </View>
-          <View > 
+            <Animatable.View
+              style={{ marginBottom: 25 }}
+              animation='fadeInRight'
+              duration={1500}
+              delay={1500}
+            >
+              <TouchableOpacity
+                onPress={() => this.props.navigation.navigate('RootStackLoginScreen')}
+              >
+                <LinearGradient
+                  colors={['#5db8fe', '#39cff2']}
+                  style={styles.signIn}
+                >
+                  <Text style={[styles.textSign,]}>Emitir Reporte</Text>
+                </LinearGradient>
+              </TouchableOpacity>
+            </Animatable.View>
+          </View>
+          <View >
           </View>
         </View>
-          
-        
+      </SafeAreaView>
+
     );
   }
 }
@@ -107,7 +136,7 @@ const styles = StyleSheet.create({
   Container: {
     backgroundColor: '#000',
     flex: 1,
-    marginTop: 50,
+    marginTop: 35,
   },
   buttonContainer: {
     paddingTop: 20,
@@ -116,13 +145,13 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     color: 'white',
-    marginLeft: 27
+    marginLeft: 20
   },
   signIn: {
-    width: 150,
+    width: 270,
     height: 50,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10
-},
+  },
 });
