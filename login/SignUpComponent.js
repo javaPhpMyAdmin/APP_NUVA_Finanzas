@@ -47,7 +47,7 @@ export default class SignUpComponent extends Component{
          <View style={styles.contianer}>
             <StatusBar barStyle='light-content' />
             <Animatable.View 
-                animation='zoomIn' 
+                animation='zoomOut' 
                 style={styles.layout}
                 duration= {1500}
             >
@@ -288,7 +288,7 @@ const styles = StyleSheet.create({
    layout: {
        width:'100%', 
        height: 90, 
-       backgroundColor:'rgb(68, 65, 49)', 
+       backgroundColor:'gray',/*rgb(68, 65, 49)*/ 
        position:'absolute',
        borderBottomLeftRadius: 180,
        borderBottomRightRadius: 180
