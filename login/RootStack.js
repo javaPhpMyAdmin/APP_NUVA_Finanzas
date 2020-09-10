@@ -13,11 +13,12 @@ import SignUpComponent from './SignUpComponent';
 import Fondos from '../screens/Fondos'
 import NuevoMovimiento from '../screens/NuevoMovimiento'
 import Lottie from '../screens/auxPieChart'
+import ModificarMovimiento from '../screens/ModificarMovimiento'
 //
 
 const StackNavigator = createStackNavigator({
     SplashScreen: {
-        screen: NuevoMovimiento,//SplashComponent,
+        screen: SplashComponent,
         navigationOptions: {
             headerShown: false
         }
@@ -35,7 +36,7 @@ const StackNavigator = createStackNavigator({
         }
     },
     RootStackLoginScreen: {
-        screen: RootStackLogin,//HandlerStack,
+        screen: RootStackLogin,
         navigationOptions: {
             headerShown: false
         }
