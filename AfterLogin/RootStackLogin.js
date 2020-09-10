@@ -10,6 +10,8 @@ import Ventas from '../screens/Ventas'
 import Gastos from '../screens/Gastos'
 import Fondos from '../screens/Fondos'
 
+import NuevoMovimiento from '../screens/NuevoMovimiento'
+import ModificarMovimiento from '../screens/ModificarMovimiento'
 
 import ScreenMotion from '../screens/BarChart/motion'
 
@@ -47,7 +49,7 @@ const TabNavigator = createBottomTabNavigator({
     }),
 
   VENTAS: createStackNavigator({
-    VENTAS: Ventas,
+    VENTAS: TestBarChart,
   },
     {
       defaultNavigationOptions: {
@@ -65,7 +67,9 @@ const TabNavigator = createBottomTabNavigator({
   // }),
 
   FONDOS: createStackNavigator({
-    FONDOS: TestBarChart, //ScreenMotion, //SOLO PARA TESTING, IRIA EN VENTAS ORIGINALMENTE
+    FONDOS: Fondos,//ScreenMotion, //SOLO PARA TESTING, IRIA EN VENTAS ORIGINALMENTE
+    NUEVOMOVIMIENTO: NuevoMovimiento,
+    MODIFICARMOVIMIENTO: ModificarMovimiento
   }, {
     defaultNavigationOptions: {
       headerShown: false,
