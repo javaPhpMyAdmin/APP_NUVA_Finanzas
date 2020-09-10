@@ -46,7 +46,7 @@ export default class Fondos extends React.Component {
               animation='flipInY'
               duration={1700}
               delay={1900}
-              style={{ flexDirection: 'column', paddingBottom: 10, alignItems: 'flex-end', paddingRight: 13, justifyContent:'center' }}>
+              style={{ flexDirection: 'column', paddingBottom: 10, alignItems: 'flex-end', paddingRight: 13, justifyContent: 'center' }}>
               <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 35 }}>1000000</Text>
               <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 35 }}>5000</Text>
             </Animatable.View>
@@ -55,7 +55,7 @@ export default class Fondos extends React.Component {
           <View style={{ flexDirection: 'row', marginTop: 50, marginLeft: 15, justifyContent: 'space-between' }}>
             <Animatable.Text animation='flipInY' duration={1700} style={{ color: 'white', fontWeight: 'bold', fontSize: 30, paddingTop: 4 }}>BANCO</Animatable.Text>
             <Animatable.View animation='flipInY' duration={1700} delay={1000} style={{ flexDirection: 'column', marginLeft: 30 }}>
-              <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 30, marginRight: 20, paddingLeft: 3, paddingTop: 3}}>$U</Text>
+              <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 30, marginRight: 20, paddingLeft: 3, paddingTop: 3 }}>$U</Text>
               <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 30, marginRight: 20, paddingTop: 12 }}>US$</Text>
             </Animatable.View>
             <Animatable.View
@@ -76,7 +76,7 @@ export default class Fondos extends React.Component {
               delay={500}
             >
               <TouchableOpacity
-                onPress={() => this.props.navigation.navigate('RootStackLoginScreen')}
+                onPress={() => this.props.navigation.navigate('NUEVOMOVIMIENTO')}
               >
                 <LinearGradient
                   colors={['#5db8fe', '#39cff2']}
@@ -94,7 +94,7 @@ export default class Fondos extends React.Component {
               delay={1000}
             >
               <TouchableOpacity
-                onPress={() => this.props.navigation.navigate('RootStackLoginScreen')}
+                onPress={() => this.props.navigation.navigate('MODIFICARMOVIMIENTO')}
               >
                 <LinearGradient
                   colors={['#5db8fe', '#39cff2']}
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
   Container: {
     backgroundColor: '#000',
     flex: 1,
-    marginTop: 35,
+    marginTop: 0,
   },
   buttonContainer: {
     paddingTop: 20,
