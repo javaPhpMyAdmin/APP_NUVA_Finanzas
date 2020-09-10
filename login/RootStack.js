@@ -11,12 +11,13 @@ import SignUpComponent from './SignUpComponent';
 
 //SOLO PARA TESTING DESPUES ELIMINAR COMPONENTE
 import Fondos from '../screens/Fondos'
+import NuevoMovimiento from '../screens/NuevoMovimiento'
 import Lottie from '../screens/auxPieChart'
 //
 
 const StackNavigator = createStackNavigator({
     SplashScreen: {
-        screen: Fondos,//SplashComponent,
+        screen: NuevoMovimiento,//SplashComponent,
         navigationOptions: {
             headerShown: false
         }
