@@ -37,25 +37,25 @@ export default class Fondos extends React.Component {
       <SafeAreaView style={styles.Container}>
         <View >
           <View style={{ flexDirection: 'row', marginTop: 150, marginLeft: 15, justifyContent: 'space-between' }}>
-            <Animatable.Text animation='flipInY' duration={1700} style={{ color: 'white', fontWeight: 'bold', fontSize: 30 }}>CAJA</Animatable.Text>
+            <Animatable.Text animation='flipInY' duration={1700} style={{ color: 'white', fontWeight: 'bold', fontSize: 30, paddingTop: 4 }}>CAJA</Animatable.Text>
             <Animatable.View animation='flipInY' duration={1700} delay={1000} style={{ flexDirection: 'column', marginLeft: 45 }}>
-              <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 30, marginRight: 20, paddingLeft: 3 }}>$U</Text>
-              <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 30, marginRight: 20, paddingTop: 12 }}>US$</Text>
+              <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 30, marginRight: 20, paddingLeft: 3, marginTop: 3 }}>$U</Text>
+              <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 30, marginRight: 20, paddingTop: 8 }}>US$</Text>
             </Animatable.View>
             <Animatable.View
               animation='flipInY'
               duration={1700}
               delay={1900}
-              style={{ flexDirection: 'column', paddingBottom: 10, alignItems: 'flex-end', paddingRight: 13 }}>
+              style={{ flexDirection: 'column', paddingBottom: 10, alignItems: 'flex-end', paddingRight: 13, justifyContent:'center' }}>
               <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 35 }}>1000000</Text>
               <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 35 }}>5000</Text>
             </Animatable.View>
           </View>
 
           <View style={{ flexDirection: 'row', marginTop: 50, marginLeft: 15, justifyContent: 'space-between' }}>
-            <Animatable.Text animation='flipInY' duration={1700} style={{ color: 'white', fontWeight: 'bold', fontSize: 30 }}>BANCO</Animatable.Text>
+            <Animatable.Text animation='flipInY' duration={1700} style={{ color: 'white', fontWeight: 'bold', fontSize: 30, paddingTop: 4 }}>BANCO</Animatable.Text>
             <Animatable.View animation='flipInY' duration={1700} delay={1000} style={{ flexDirection: 'column', marginLeft: 30 }}>
-              <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 30, marginRight: 20, paddingLeft: 3, }}>$U</Text>
+              <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 30, marginRight: 20, paddingLeft: 3, paddingTop: 3}}>$U</Text>
               <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 30, marginRight: 20, paddingTop: 12 }}>US$</Text>
             </Animatable.View>
             <Animatable.View
