@@ -13,11 +13,8 @@ import Fondos from '../screens/Fondos'
 import NuevoMovimiento from '../screens/NuevoMovimiento'
 import ModificarMovimiento from '../screens/ModificarMovimiento'
 
-import ScreenMotion from '../screens/BarChart/motion'
+import NuevaVenta from '../screens/NuevaVenta'
 
-import TestBarChart from '../screens/BarChart/TestBarChart'
-
-import DonutAuto from '../screens/DonutChart/TestDonut'
 
 import ReporteVentas from '../screens/ReporteVentas'
 import ReporteGastos from '../screens/ReporteGastos'
@@ -52,8 +49,8 @@ const TabNavigator = createBottomTabNavigator({
     }),
 
   VENTAS: createStackNavigator({
-    VENTAS: TestBarChart,
-    NUEVAVENTA: Ventas,
+    VENTAS: Ventas,
+    NUEVAVENTA: NuevaVenta,
   },
     {
       defaultNavigationOptions: {
