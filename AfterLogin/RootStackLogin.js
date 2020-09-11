@@ -22,6 +22,8 @@ import DonutAuto from '../screens/DonutChart/TestDonut'
 import ReporteVentas from '../screens/ReporteVentas'
 import ReporteGastos from '../screens/ReporteGastos'
 
+import NuevoGasto from '../screens/NuevoGasto'
+
 import Lottie from '../screens/auxPieChart'
 
 const TabNavigator = createBottomTabNavigator({
@@ -41,6 +43,7 @@ const TabNavigator = createBottomTabNavigator({
 
   GASTOS: createStackNavigator({
     GASTOS: Gastos,
+    NUEVOGASTO: NuevoGasto,
   },
     {
       defaultNavigationOptions: {
@@ -50,6 +53,7 @@ const TabNavigator = createBottomTabNavigator({
 
   VENTAS: createStackNavigator({
     VENTAS: TestBarChart,
+    NUEVAVENTA: Ventas,
   },
     {
       defaultNavigationOptions: {
