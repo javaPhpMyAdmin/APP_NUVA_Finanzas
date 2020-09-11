@@ -17,25 +17,44 @@ export default NuevoMovimiento = ({ navigation }) => {
     }, []);
 
     const [show, setShow] = useState(false)
-    const [mode, setMode] = useState('date');
     const [showData, setShowData] = useState(false)
     const [fecha, setFecha] = useState('')
-    const [moneda, setMoneda] = useState('pesos')
-    const [tipomov, setTipomov] = useState('aporte')
-    const [formapago, setFormapago] = useState('caja')
 
     const showDatepicker = () => {
         setShow(!show)
     };
 
+    const auxFunction = (values) => {
+
+        const auxJson =
+        {
+            tipo_movimiento: values.tipo_movimiento,
+            forma_de_pago: values.forma_de_pago,
+            fecha_movimiento: new Date(),
+            moneda: values.moneda,
+            importe: values.importe,
+            motivo: values.motivo,
+        }
+
+        alert(JSON.stringify(auxJson))
+    }
+
     return (
         <ScrollView style={styles.container1}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <Formik
-                    initialValues={{ cliente: '', numero_documento: '', fecha_venta: new Date(), forma_de_pago: '' }}
+                    initialValues={
+                        {
+                            tipo_movimiento: 'aporte',
+                            forma_de_pago: 'caja',
+                            fecha_movimiento: new Date(),
+                            moneda: 'pesos',
+                            importe: '',
+                            motivo: '',
+                        }
+                    }
                     onSubmit={(values, action) => {
-                        console.log('desde submit');
-                        console.log(values);
+                        auxFunction(values);
                         action.resetForm();
                         setFecha('');
                         setShowData(false);
@@ -58,9 +77,9 @@ export default NuevoMovimiento = ({ navigation }) => {
                                 </Text>
                                     </View>
                                     <RadioButton
-                                        value="aporte"
-                                        status={tipomov === 'aporte' ? 'checked' : 'unchecked'}
-                                        onPress={() => { setTipomov('aporte'); console.log('Selecciono', tipomov) }}
+                                        value={props.values.tipo_movimiento}
+                                        status={props.values.tipo_movimiento === 'aporte' ? 'checked' : 'unchecked'}
+                                        onPress={() => props.setFieldValue('tipo_movimiento', 'aporte')}
                                     />
                                 </View>
                                 <View style={{ flexDirection: 'row', paddingLeft: 16 }}>
@@ -71,9 +90,9 @@ export default NuevoMovimiento = ({ navigation }) => {
                                     </View>
                                     <View style={{ paddingLeft: 12 }}>
                                         <RadioButton
-                                            value="retiro"
-                                            status={tipomov === 'retiro' ? 'checked' : 'unchecked'}
-                                            onPress={() => { setTipomov('retiro'); console.log('Selecciono', tipomov) }}
+                                            value={props.values.tipo_movimiento}
+                                            status={props.values.tipo_movimiento === 'retiro' ? 'checked' : 'unchecked'}
+                                            onPress={() => props.setFieldValue('tipo_movimiento', 'retiro')}
                                         />
                                     </View>
 
@@ -93,9 +112,9 @@ export default NuevoMovimiento = ({ navigation }) => {
                                 </Text>
                                     </View>
                                     <RadioButton
-                                        value="caja"
-                                        status={formapago === 'caja' ? 'checked' : 'unchecked'}
-                                        onPress={() => { setFormapago('caja'); console.log('Selecciono', formapago) }}
+                                        value={props.values.forma_de_pago}
+                                        status={props.values.forma_de_pago === 'caja' ? 'checked' : 'unchecked'}
+                                        onPress={() => props.setFieldValue('forma_de_pago', 'caja')}
                                     />
                                 </View>
                                 <View style={{ flexDirection: 'row', paddingLeft: 16 }}>
@@ -106,9 +125,9 @@ export default NuevoMovimiento = ({ navigation }) => {
                                     </View>
                                     <View style={{ paddingLeft: 12 }}>
                                         <RadioButton
-                                            value="banco"
-                                            status={formapago === 'banco' ? 'checked' : 'unchecked'}
-                                            onPress={() => { setFormapago('banco'); console.log('Selecciono', formapago) }}
+                                            value={props.values.forma_de_pago}
+                                            status={props.values.forma_de_pago === 'banco' ? 'checked' : 'unchecked'}
+                                            onPress={() => props.setFieldValue('forma_de_pago', 'banco')}
                                         />
                                     </View>
 
@@ -140,20 +159,18 @@ export default NuevoMovimiento = ({ navigation }) => {
                                     <TouchableOpacity onPress={showDatepicker}>
                                         <AntDesign name='calendar' size={25} color='#f4511e' />
                                     </TouchableOpacity>
-                                    {/*<Button onPress={showDatepicker} title="Show time picker!" />*/}
                                 </View>
                                 {show && (
                                     <DateTimePicker
                                         testID="dateTimePicker"
-                                        value={props.values.fecha_venta}
-                                        mode={mode}
+                                        value={props.values.fecha_movimiento}
+                                        mode='date'
                                         is24Hour={true}
                                         display="default"
-                                        onChange={(fecha_venta, date) => {
+                                        onChange={(fecha_movimiento, date) => {
                                             setShow(false);
                                             setShowData(true);
                                             setFecha(moment(date));
-                                            //console.log(fecha)  
                                         }}
                                     />
                                 )}
@@ -171,9 +188,9 @@ export default NuevoMovimiento = ({ navigation }) => {
                                     </View>
                                     <View style={{ paddingLeft: 10 }}>
                                         <RadioButton
-                                            value="pesos"
-                                            status={moneda === 'pesos' ? 'checked' : 'unchecked'}
-                                            onPress={() => { setMoneda('pesos'); console.log('Selecciono', moneda) }}
+                                            value={props.values.moneda}
+                                            status={props.values.moneda === 'pesos' ? 'checked' : 'unchecked'}
+                                            onPress={() => props.setFieldValue('moneda', 'pesos')}
                                         />
                                     </View>
 
@@ -185,9 +202,9 @@ export default NuevoMovimiento = ({ navigation }) => {
                                 </Text>
                                     </View>
                                     <RadioButton
-                                        value="dolares"
-                                        status={moneda === 'dolares' ? 'checked' : 'unchecked'}
-                                        onPress={() => { setMoneda('dolares'); console.log('Selecciono', moneda) }}
+                                        value={props.values.moneda}
+                                        status={props.values.moneda === 'dolares' ? 'checked' : 'unchecked'}
+                                        onPress={() => props.setFieldValue('moneda', 'dolares')}
                                     />
                                 </View>
                             </View>
@@ -215,7 +232,7 @@ export default NuevoMovimiento = ({ navigation }) => {
                                     placeholder='Motivo del movimiento'
                                     style={[styles.textInput]}
                                     value={props.values.tipo_pago}
-                                    onChangeText={props.handleChange('tipo_pago')}
+                                    onChangeText={props.handleChange('motivo')}
                                 />
 
                             </View>
@@ -242,7 +259,6 @@ export default NuevoMovimiento = ({ navigation }) => {
                                 </View>
                             </TouchableOpacity>
                         </View>
-
                     )}
                 </Formik>
                 {/* <TouchableOpacity
