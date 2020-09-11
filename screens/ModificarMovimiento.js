@@ -7,7 +7,7 @@ import moment from 'moment'
 import { RadioButton } from 'react-native-paper';
 import { AntDesign } from '@expo/vector-icons';
 
-export default ModificarMovimiento = () => {
+export default ModificarMovimiento = ({ navigation }) => {
 
     const [show, setShow] = useState(false)
     const [showData, setShowData] = useState(false)
@@ -29,6 +29,10 @@ export default ModificarMovimiento = () => {
         }
 
         alert(JSON.stringify(auxJson))
+    }
+
+    const deleteFunc = () => {
+        alert("Funcion eliminar test")
     }
 
     return (
@@ -149,7 +153,7 @@ export default ModificarMovimiento = () => {
 
                                 <View style={{ justifyContent: 'center', paddingLeft: 45, paddingBottom: 19 }}>
                                     <TouchableOpacity onPress={showDatepicker}>
-                                        <AntDesign name='calendar' size={25} color='#f4511e' />
+                                        <AntDesign name='calendar' size={45} color='#f4511e' />
                                     </TouchableOpacity>
                                 </View>
                                 {show && (
@@ -251,39 +255,37 @@ export default ModificarMovimiento = () => {
                                     </LinearGradient>
                                 </View>
                             </TouchableOpacity>
-
-
-                            <TouchableOpacity
-                                onPress={() => props.handleSubmit()}
-                            >
-                                <View style={styles.button}>
-                                    <LinearGradient
-                                        colors={['#5db8fe', '#39cff2']}
-                                        style={styles.signIn}
-                                    >
-                                        <Text style={[styles.textSign, { color: 'white' }]}>Eliminar Movimiento</Text>
-                                    </LinearGradient>
-                                </View>
-                            </TouchableOpacity>
-
-                            <TouchableOpacity
-                                onPress={() => props.handleSubmit()}
-                            >
-                                <View style={[styles.button, { paddingBottom: 20, paddingTop: 2 }]}>
-                                    <LinearGradient
-                                        colors={['#5db8fe', '#39cff2']}
-                                        style={styles.signIn}
-                                    >
-                                        <Text style={[styles.textSign, { color: 'white' }]}>Salir</Text>
-                                    </LinearGradient>
-                                </View>
-                            </TouchableOpacity>
-
                         </View>
-
                     )}
                 </Formik>
+
             </TouchableWithoutFeedback>
+
+            <TouchableOpacity
+                onPress={() => deleteFunc()}
+            >
+                <View style={styles.button}>
+                    <LinearGradient
+                        colors={['#5db8fe', '#39cff2']}
+                        style={styles.signIn}
+                    >
+                        <Text style={[styles.textSign, { color: 'white' }]}>Eliminar Movimiento</Text>
+                    </LinearGradient>
+                </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+                onPress={() => navigation.goBack()}
+            >
+                <View style={[styles.button, { paddingBottom: 20, paddingTop: 2 }]}>
+                    <LinearGradient
+                        colors={['#5db8fe', '#39cff2']}
+                        style={styles.signIn}
+                    >
+                        <Text style={[styles.textSign, { color: 'white' }]}>Salir</Text>
+                    </LinearGradient>
+                </View>
+            </TouchableOpacity>
         </ScrollView>
     )
 }
