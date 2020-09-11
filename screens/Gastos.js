@@ -1,327 +1,216 @@
-import React, {useState} from 'react';
-import { RadioGroup, Radio, StyleSheet, Text, View, Button, TextInput, TouchableOpacity, ScrollView, Keyboard, TouchableWithoutFeedback } from 'react-native';
-import { Formik, Field, Form } from 'formik';
+import React, { useState } from 'react';
+import { View, StyleSheet, Dimensions, FlatList, TouchableOpacity } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient';
-import DateTimePicker from '@react-native-community/datetimepicker'
-import moment from 'moment'
-import { RadioButton } from 'react-native-paper';
+import { Text, variables } from 'native-base'
+import { get, maxBy, floor } from 'lodash'
+import BarChart from './BarChart/index'
+import { ScrollView } from 'react-native-gesture-handler';
+import * as ScreenOrientation from 'expo-screen-orientation'
 import { AntDesign } from '@expo/vector-icons';
 
 
+export default class Gastos extends React.Component {
+    constructor(props) {
+        super(props)
 
-export default Gastos = () =>{
+        this.state = {
+            max: 0,
+            barChartHeight: 0,
+            items: [
+                { value: 400, month: 'Enero' },
+                { value: 70, month: 'Febrero' },
+                { value: 1000, month: 'Marzo' },
+                { value: 50, month: 'Abril' },
+                { value: 500, month: 'Mayo' },
+                { value: 500, month: 'Junio' },
+                { value: 400, month: 'Julio' },
+                { value: 70, month: 'Agosto' },
+                { value: 600, month: 'Setiembre' },
+                { value: 50, month: 'Octubre' },
+                { value: 30, month: 'Noviembre' },
+                { value: 500, month: 'Diciembre' },
+            ]
+        }
+    }
 
-    const [show, setShow] = useState(false)
-    const [mode, setMode] = useState('date');
-    const [showData, setShowData] = useState(false)
-    const [fecha, setFecha] = useState('')
-    const [moneda, setMoneda] = useState('pesos')
 
-    const [checked, setChecked] = React.useState('efectivo');
 
-      const showDatepicker = () => {
-        setShow(!show)
-      };
+    landscape = function changeScreenOrientation() {
+        const a = //ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE);//ScreenOrientation.ScreenOrientationInfo
+            console.log('try orientation', a)
+    }
 
-    return(
-        <ScrollView style={styles.container1}>
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <Formik 
-                initialValues={{cliente: '', numero_documento:'', fecha_venta: new Date(), forma_de_pago:''}}
-                onSubmit={(values, action)=>{
-                    console.log('desde submit');
-                    console.log(values);
-                    action.resetForm();
-                    setFecha('');
-                    setShowData(false);
-                }}
+    portrait = async function changeScreenOrientation() {
+        await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
+    }
+
+    UNSAFE_componentWillMount() {
+        this.landscape();
+        const { height } = Dimensions.get('window');
+        this.getBarChartHeight(height)
+    }
+
+    componentWillUnmount() {
+        // this.portrait()
+    }
+
+    getBarChartHeight(heightScreen) {
+        this.setState({
+            barChartHeight: heightScreen - variables.toolbarHeight - 134
+        })
+    }
+
+    // _onLayout = (e) => {
+    //     //console.log('incline', e.nativeEvent.layout.height)
+    //     const heightScreen =  700//
+    //     this.getBarChartHeight(heightScreen)
+    // }
+
+    getMaxValue() {
+        const maxVaalue = get(maxBy(items, 'value'), 'value', 1);
+        setMax(maxVaalue);
+    }
+
+    renderBar(item, index, maxValue) {
+        const { value, month } = item
+        const { barChartHeight } = this.state
+        const valueY = value * barChartHeight / maxValue
+
+
+        return (
+
+            <BarChart
+                key={'barChart' + index}
+                height={barChartHeight}
+                valueY={floor(valueY, 2)}
+                style={{ backgroundColor: 'green', borderTopRightRadius: 10, borderTopLeftRadius: 10 }}
+                labelTop={<Text style={{ textAlign: 'center', color: 'white', paddingTop: 10 }}>{value}</Text>}
+                labelBottom={
+                    <Text style={styles.labelBottom}>{month}</Text>
+                }
             >
+                <View ></View>
+            </BarChart>
 
-            {(props) => (
-                
-                <View style={styles.contianer}>
+        )
+    }
 
-                    <Text style={[styles.text_footer, { marginTop: 35}]}>
-                        Proveedor
-                    </Text>
-                    <View style={styles.action}> 
-                            <TextInput 
-                                placeholder= 'Nombre del Proveedor...'
-                                style={styles.textInput}
-                                value={props.values.cliente || ''}
-                                onChangeText={props.handleChange('cliente')}
-                            />
-                        
-                    </View>
-                
-                    <Text style={[styles.text_footer, { marginTop: 35}]}>
-                        Numero de documento
-                    </Text>
-                    <View style={styles.action}>
-                            <TextInput 
-                                placeholder= 'Numero de documento...'
-                                style={styles.textInput}
-                                value={props.values.numero_documento || ""}
-                                onChangeText={props.handleChange('numero_documento')}
-                            />
-                    </View>
-                    <View style={{flexDirection: 'row',paddingTop:15,width:'100%',height:110}}>
-                        <Text style={[styles.text_footer, { marginTop: 35}]}>
-                            Fecha
-                        </Text>
-                        {
-                            showData ?
+    render() {
+        const { items, barChartHeight } = this.state
+        const maxValue = get(maxBy(items, 'value'), 'value', 1)
 
-                            <Text 
-                                style={[styles.text_footer, { marginTop: 35}]}
-                            >
-                            {moment(fecha).format('DD-MM-YYYY')} 
-                            </Text>
-                            :
-                            <Text 
-                                style={[styles.text_footer, { marginTop: 35}]}
-                            >
-                            {''} 
-                            </Text>
-                        }
-                        
-                        <View style={{justifyContent:'center', paddingLeft:55}}>
-                            <TouchableOpacity onPress={showDatepicker}>
-                                <AntDesign name='calendar' size={25} color='#f4511e'/>
-                            </TouchableOpacity>
-                            {/*<Button onPress={showDatepicker} title="Show time picker!" />*/}
-                        </View>
-                        {show && (
-                            <DateTimePicker
-                                testID="dateTimePicker"
-                                value={props.values.fecha_venta}
-                                mode={mode}
-                                is24Hour={true}
-                                display="default"
-                                onChange={(fecha_venta,date) => {
-                                    setShow(false);
-                                    setShowData(true);
-                                    setFecha(moment(date));
-                                    //console.log(fecha)  
-                                }}
-                            />
-                        )}
-                    </View>
 
-                    <Text style={[styles.text_footer, { marginTop: 5}]}>
-                        Moneda
-                    </Text>
-                    <View style={{paddingLeft:60,paddingTop:10}}>
-                        <View style={{flexDirection: 'row',paddingLeft:16,paddingTop:10}}>
-                            <View style={{justifyContent:'center'}}>
-                                <Text style={{fontSize: 16, color: 'white', paddingRight:6}}>
-                                Pesos
-                                </Text>
-                            </View>
-                            <View style={{paddingLeft:10}}>
-                                <RadioButton
-                                    value="pesos"
-                                    status={ moneda === 'pesos' ? 'checked' : 'unchecked' }
-                                    onPress={() => {setMoneda('pesos'); console.log('Selecciono',checked)}}
-                                /> 
-                            </View>
-                            
-                        </View>
-                        <View style={{flexDirection: 'row',paddingLeft:16}}>
-                            <View style={{justifyContent:'center'}}>
-                                <Text style={{fontSize: 16, color: 'white', paddingRight:6}}>
-                                Dólares
-                                </Text>
-                            </View>
-                            <RadioButton
-                                value="dolares"
-                                status={ moneda === 'dolares' ? 'checked' : 'unchecked' }
-                                onPress={() => {setMoneda('dolares'); console.log('Selecciono',checked)}}
-                            /> 
-                        </View>  
-                    </View>
-
-                    <Text style={[styles.text_footer, { marginTop: 35}]}>
-                        Importe
-                    </Text>
-                    <View style={styles.action}> 
-                            <TextInput 
-                                keyboardType='numeric'
-                                placeholder= 'Monto del importe...'
-                                style={styles.textInput}
-                                value={props.values.importe}
-                                onChangeText={props.handleChange('importe')}
-                            />
-                        
-                    </View>
-
-                    <Text style={[styles.text_footer, { marginTop: 35}]}>
-                        IVA
-                    </Text>
-                    <View style={styles.action}> 
-                            <TextInput 
-                                keyboardType='numeric'
-                                placeholder= 'Monto del IVA...'
-                                style={styles.textInput}
-                                value={props.values.iva}
-                                onChangeText={props.handleChange('iva')}
-                            />
-                    </View>
-
-                    <Text style={[styles.text_footer, { marginTop: 35}]}>
-                        TOTAL
-                    </Text>
-                    <View style={styles.action}> 
-                            <TextInput 
-                                placeholder= 'Total de la venta...'
-                                style={styles.textInput}
-                                value={props.values.total}
-                                onChangeText={props.handleChange('total')}
-                            />             
-                    </View>
-
-                    <Text style={[styles.text_footer, { marginTop: 35}]}>
-                        Forma de Pago
-                    </Text>
-                    
-                    <View style={{paddingLeft:60,paddingTop:10}}>
-                        <View style={{flexDirection: 'row',paddingLeft:16, paddingTop:10}}>
-                            <View style={{justifyContent:'center'}}>
-                                <Text style={{fontSize: 16, color: 'white', paddingRight:6}}>
-                                Efectivo
-                                </Text>
-                            </View>
-                            <RadioButton
-                                value="efectivo"
-                                status={ checked === 'efectivo' ? 'checked' : 'unchecked' }
-                                onPress={() => {setChecked('efectivo'); console.log('Selecciono',checked)}}
-                            /> 
-                        </View>
-                        <View style={{flexDirection: 'row',paddingLeft:16}}>
-                            <View style={{justifyContent:'center'}}>
-                                <Text style={{fontSize: 16, color: 'white', paddingRight:6}}>
-                                Débito
-                                </Text>
-                            </View>
-                            <View style={{paddingLeft:12}}>
-                                <RadioButton
-                                    value="debito"
-                                    status={ checked === 'debito' ? 'checked' : 'unchecked' }
-                                    onPress={() => {setChecked('debito'); console.log('Selecciono',checked)}}
-                                /> 
-                            </View>
-                            
-                        </View>
-                        <View style={{flexDirection: 'row',paddingLeft:16}}>
-                            <View style={{justifyContent:'center'}}>
-                                <Text style={{fontSize: 16, color: 'white', paddingRight:6}}>
-                                Crédito
-                                </Text>
-                            </View>
-                            <View style={{paddingLeft:7}}>
-                                <RadioButton
-                                    value="credito"
-                                    status={ checked === 'credito' ? 'checked' : 'unchecked' }
-                                    onPress={() => {setChecked('credito'); console.log('Selecciono',checked)}}
-                                /> 
-                            </View>
-                        </View>
-                    </View>
-                    
-                    {/*<View style={styles.action}> 
-                            <Field name='forma_de_pago' type='checkbox' value='efectivo' as={Checkbox}/>
-                            <Field name='forma_de_pago' type='radio' value='efectivo' as={Radio}/>
-                            <Field name='forma_de_pago' type='radio' value='debito' as={Radio}/>
-                            <Field name='forma_de_pago' type='radio' value='credito' as={Radio}/>    
-                        </View>*/}
-
-                    <Text style={[styles.text_footer, {  marginTop: 35}]}>
-                        Tipo de Pago
-                    </Text>
-                    <View style={styles.action}> 
-                            <TextInput 
-                                placeholder= 'Monto del importe...'
-                                style={[styles.textInput]}
-                                value={props.values.tipo_pago}
-                                onChangeText={props.handleChange('tipo_pago')}
-                            />
-                        
-                    </View>
+        return (
+            <View style={styles.container}>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 5, marginLeft: 5, marginRight: 15 }}>
 
                     <TouchableOpacity
-                        onPress={()=> props.handleSubmit()}
+                        onPress={() => { this.props.navigation.navigate('NUEVOGASTO')}}
                     >
-                        <View style={styles.button}>
-                            <LinearGradient 
+                        <View sytle={{ flexDirection: 'row' }}>
+                            <LinearGradient
                                 colors={['#5db8fe', '#39cff2']}
-                                style={styles.signIn}
+                                style={[styles.signIn, { flexDirection: 'row' }]}
                             >
-                                <Text style={styles.textSign}>Agregar Gasto</Text>
+                                <Text style={[styles.textSign, { marginRight: 5 }]}>Nuevo Gasto</Text>
+                                <AntDesign name='checkcircleo' size={33} color='#000' />
                             </LinearGradient>
                         </View>
                     </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => this.props.navigation.navigate('RootStackLoginScreen')}
+                    >
+                        <LinearGradient
+                            colors={['#5db8fe', '#39cff2']}
+                            style={[styles.signIn, { flexDirection: 'row' }]}
+                        >
+                            <Text style={[styles.textSign, { marginRight: 3 }]}>Último Gasto</Text>
+                            <AntDesign name='form' size={33} color='#000' />
+                        </LinearGradient>
+                    </TouchableOpacity>
 
                 </View>
-           
-            )} 
-            </Formik>
-            </TouchableWithoutFeedback>
-        </ScrollView> 
-    )
+
+                <ScrollView /*onLayout={(e)=>{this._onLayout(e)}}*/ alwaysBounceHorizontal={false} horizontal={true}>
+
+                    <View /*onLayout={(e) => this.onLayout(e)}*/ style={styles.content}>
+                        <View style={[styles.barChartContainer, { height: barChartHeight + 80, }]}>
+                            {items.map((item, index) => this.renderBar(item, index, maxValue))}
+                            <View style={styles.borderLine}></View>
+                        </View>
+                    </View>
+                </ScrollView>
+            </View>
+
+            // <View>
+            //     <Text>hello</Text>
+            //     <LinearGradient colors={['#6441A5', '#2a0845']} style={{ flex: 1 }}>
+            //         <Container style={styles.container}>
+            //             <Content onLayout={(e) => this.onLayout(e)} contentContainerStyle={styles.content}>
+            //                 <Text style={styles.animateTitle}>Estadisticas de las ventas</Text>
+            //                 <View style={[styles.barChartContainer, { height: barChartHeight + 50 }]}>
+            //                     {items.map((item, index) => this.renderBar(item, index, maxValue))}
+            //                     <View style={styles.borderLine}></View>
+            //                 </View>
+            //             </Content>
+            //         </Container>
+            //     </LinearGradient>
+            // </View>
+        )
+    }
 }
 
+
+const backgroundColor = '#000'
+const borderColor = 'red'
+
 const styles = StyleSheet.create({
-    container1: {
+    container: {
+        backgroundColor: 'red',
+        height: '100%',
+        width: '100%',
+        backgroundColor
+    },
+    content: {
         flex: 1,
-        backgroundColor: '#0f0f0a'
+        paddingTop: 5,
+        backgroundColor
     },
-    contianer:{
-        flex: 1,
-        backgroundColor: '#000'
+    title: {
+        flex: 3
     },
-    input: {
-        borderBottomWidth : 1,
-        borderColor: 'white',
-        padding: 10,
-        fontSize: 18,
-        borderRadius:10,
-        width:350
+    barChartContainer: {
+        width: '100%',
+        flexDirection: 'row',
+        marginLeft: 19,
+        marginRight: 10,
+        borderColor,
+        backgroundColor,
     },
-    button: {
-        alignItems:'center',
-       marginTop: 20,
-       marginBottom:20
-    },
-    text_footer: {
+    labelBottom: {
+        height: 38,
+        textAlign: 'center',
+        paddingTop: 4,
+        backgroundColor,
         color: 'white',
-       fontSize: 20,
-       marginLeft:15
     },
-    textInput: {
-       paddingLeft: 10,
-       color: 'white'
-       
-    },
-    action: {
-       flexDirection: 'row',
-       marginTop: 10,
-       borderBottomWidth: 1,
-       borderBottomColor: 'gray',
-       paddingBottom: 5,
-       width: 330,
-       marginLeft:15
+    borderLine: {
+        width: '100%',
+        position: 'absolute',
+        borderWidth: 0.5,
+        borderColor: 'red',
+        bottom: 12,
     },
     signIn: {
-        width: '80%',
+        width: 175,
         height: 50,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 10
     },
     textSign: {
-        fontSize: 18,
+        fontSize: 22,
         fontWeight: 'bold',
         color: 'white',
-        marginRight: 2
     },
 })
