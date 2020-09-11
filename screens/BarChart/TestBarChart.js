@@ -107,7 +107,7 @@ export default class TestBarChart extends React.Component {
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 5, marginLeft: 5, marginRight: 15 }}>
 
                     <TouchableOpacity
-                        onPress={() => { this.props.navigation.navigate('VENTAS') }}
+                        onPress={() => { this.props.navigation.navigate('NUEVAVENTA') }}
                         style={{}}
                     >
                         <View sytle={{ flexDirection: 'row' }}>
