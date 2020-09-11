@@ -1,37 +1,12 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
-import LottieView from 'lottie-react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Animatable from 'react-native-animatable'
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default class Fondos extends React.Component {
-  componentDidMount() {
-    //this.animation1.play();
-    // Or set a specific startFrame and endFrame with:
-    //this.animation1.play(30, 130);
-  }
+  componentDidMount() { }
 
-
-  //<LottieView
-  //   ref={animation1 => {
-  //     this.animation1 = animation1;
-  //   }}
-  //   style={{
-  //     width: 130,
-  //     height: 130,
-  //     backgroundColor: '#000',
-  //     marginLeft: 0,
-  //   }}
-  //   source={require('../assets/24843-credit-cards (1)')}
-  // // OR find more Lottie files @ https://lottiefiles.com/featured*/
-  // />            
-
-  //   <Image
-  //   //resizeMode='contain'
-  //   style={{ width: 40, height: 40, marginRight: 0, backgroundColor: '#000' }}
-  //   source={require('../assets/18847-add-new-overflowing.gif')}
-  // />
   render() {
     return (
       <SafeAreaView style={styles.Container}>
