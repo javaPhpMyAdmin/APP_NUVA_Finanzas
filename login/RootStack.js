@@ -14,11 +14,13 @@ import Fondos from '../screens/Fondos'
 import NuevoMovimiento from '../screens/NuevoMovimiento'
 import Lottie from '../screens/auxPieChart'
 import ModificarMovimiento from '../screens/ModificarMovimiento'
+
+import TestShared from '../screens/TestShared'
 //
 
 const StackNavigator = createStackNavigator({
     SplashScreen: {
-        screen: SplashComponent,
+        screen: TestShared,//SplashComponent,
         navigationOptions: {
             headerShown: false
         }
