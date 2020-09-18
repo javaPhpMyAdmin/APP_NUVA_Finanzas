@@ -14,7 +14,7 @@ const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 const AnimatedTextInput = Animated.createAnimatedComponent(TextInput);
 
 export default function Donut({
-  percentage = 75,
+  percentage = 21,
   radius = 80,
   strokeWidth = 15,
   duration = 1200,
@@ -46,7 +46,7 @@ export default function Donut({
       const strokeDashoffset = circumference - (circumference * maxPerc) / 100;
       if (inputRef.current) {
         inputRef.current.setNativeProps({
-          text: `76%`,
+          text: `21%`,
         });
       }
       if (circleRef.current) {
