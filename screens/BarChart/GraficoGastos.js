@@ -21,17 +21,17 @@ export default class GraficoGastos extends React.Component {
             max: 0,
             barChartHeight: 0,
             items: [
-                { value: 400, month: 'Enero' },
-                { value: 70, month: 'Febrero' },
-                { value: 1000, month: 'Marzo' },
-                { value: 50, month: 'Abril' },
-                { value: 500, month: 'Mayo' },
-                { value: 500, month: 'Junio' },
-                { value: 400, month: 'Julio' },
-                { value: 70, month: 'Agosto' },
-                { value: 600, month: 'Setiembre' },
-                { value: 50, month: 'Octubre' },
-                { value: 30, month: 'Noviembre' },
+                { value: 280, month: 'Enero' },
+                { value: 250, month: 'Febrero' },
+                { value: 254, month: 'Marzo' },
+                { value: 89, month: 'Abril' },
+                { value: 280, month: 'Mayo' },
+                { value: 250, month: 'Junio' },
+                { value: 254, month: 'Julio' },
+                { value: 89, month: 'Agosto' },
+                { value: 280, month: 'Setiembre' },
+                { value: 250, month: 'Octubre' },
+                { value: 254, month: 'Noviembre' },
                 { value: 500, month: 'Diciembre' },
             ]
         }
@@ -60,7 +60,7 @@ export default class GraficoGastos extends React.Component {
 
     getBarChartHeight(heightScreen) {
         this.setState({
-            barChartHeight: heightScreen - variables.toolbarHeight - 134
+            barChartHeight: heightScreen - variables.toolbarHeight - 210       
         })
     }
 
@@ -84,6 +84,7 @@ export default class GraficoGastos extends React.Component {
         return (
 
             <BarChart
+                mes={month}
                 key={'barChart' + index}
                 height={barChartHeight}
                 valueY={floor(valueY, 2)}
@@ -135,11 +136,19 @@ export default class GraficoGastos extends React.Component {
                     </TouchableOpacity>
 
                 </View>
+                <View style={{flexDirection: 'row', paddingBottom:15,paddingTop:20, justifyContent: 'space-between'}}>
+                    <Text style={{color:'white', paddingLeft:12,fontSize: 25, fontWeight: 'bold'}}>Anual</Text>
+                    <Text style={{color:'white', fontSize: 27, fontWeight: '700'}}>$ 873</Text>
+                    <TouchableOpacity onPress={()=>{}}>
+                        <Text style={{color:'white', paddingRight: 15, fontSize: 20, fontStyle: 'italic', paddingTop:5}}>Reporte</Text>
+                    </TouchableOpacity>
+                    
+                </View>
 
                 <ScrollView /*onLayout={(e)=>{this._onLayout(e)}}*/ alwaysBounceHorizontal={false} horizontal={true}>
 
                     <View /*onLayout={(e) => this.onLayout(e)}*/ style={styles.content}>
-                        <View style={[styles.barChartContainer, { height: barChartHeight + 80, }]}>
+                        <View style={[styles.barChartContainer, { height: barChartHeight + 80 }]}>
                             {items.map((item, index) => this.renderBar(item, index, maxValue))}
                             <View style={styles.borderLine}></View>
                         </View>
