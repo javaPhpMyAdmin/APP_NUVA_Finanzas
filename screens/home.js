@@ -68,7 +68,7 @@ export default class Home extends React.Component {
                             <Text style={{ color: '#fff', paddingLeft: 7, fontSize: 33, fontWeight: 'bold' }}>Ventas</Text>
                             <Text style={{ color: '#fff', paddingLeft: 7, fontSize: 33, fontWeight: 'bold' }}>$ 1,111</Text>
                             <Animatable.View animation='zoomInUp' delay={1000} duration={700} style={{ width: 48, alignItems: 'center', overflow: 'hidden', position: 'relative', marginRight: 7 }}>
-                                <TouchableOpacity onPress={() => { this.props.navigation.navigate('VENTAS') }}>
+                                <TouchableOpacity onPress={() => { this.props.navigation.navigate('NUEVAVENTA') }}>
                                     <Ionicons style={{ color: '#fff', fontSize: 50, fontWeight: 'bold', paddingBottom: 5 }} name="md-add-circle" size={24} color="black" />
                                 </TouchableOpacity>
                             </Animatable.View>
@@ -85,7 +85,7 @@ export default class Home extends React.Component {
                                 delay={1500}
                                 style={{ width: 48, alignItems: 'center', position: 'relative', marginRight: 7 }}
                             >
-                                <TouchableOpacity onPress={() => { this.props.navigation.navigate('VENTAS') }}>
+                                <TouchableOpacity onPress={() => { this.props.navigation.navigate('NUEVOGASTO') }}>
                                     <Ionicons style={{ color: '#fff', fontSize: 50, fontWeight: 'bold', paddingBottom: 5 }} name="md-add-circle" size={24} color="black" />
                                 </TouchableOpacity>
                             </Animatable.View>
