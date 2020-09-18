@@ -1,12 +1,23 @@
 import React from 'react';
-import { Button, StyleSheet, View, StatusBar, Image } from 'react-native';
+import { StyleSheet, View, StatusBar, Image } from 'react-native';
 import LottieView from 'lottie-react-native';
-import { Text } from 'react-native-animatable';
 import * as Animatable from 'react-native-animatable'
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import * as ScreenOrientation from 'expo-screen-orientation'
+
+
 
 export default class Lottie extends React.Component {
+
+  portrait = function changeScreenOrientation() {
+    const a = ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);//ScreenOrientation.ScreenOrientationInfo
+  }
+  
+  
   componentDidMount() {
+
+    this.props.navigation.isFocused() ? this.portrait() : null
+
     this.animation1.play();
     // Or set a specific startFrame and endFrame with:
     this.animation1.play(30, 100);
@@ -25,7 +36,7 @@ export default class Lottie extends React.Component {
       <View style={styles.animationContainer}>
         <StatusBar barStyle='light-content' />
         <View style={{ marginLeft: 5, marginTop: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
-          <Animatable.View animation='fadeInUpBig' duration={1500} >
+          <Animatable.View animation='fadeInDownBig' duration={1500} >
             <TouchableOpacity onPress={() => this.props.navigation.navigate('REPORTEVENTAS')}>
               <LottieView
                 ref={animation2 => {
@@ -42,7 +53,7 @@ export default class Lottie extends React.Component {
               />
             </TouchableOpacity>
           </Animatable.View>
-          <Animatable.View animation='fadeInUpBig' duration={1500} delay={500} >
+          <Animatable.View animation='fadeInDownBig' duration={1500} delay={500} >
             <TouchableOpacity onPress={() => { this.props.navigation.navigate('REPORTEGASTOS') }}>
               <LottieView
                 ref={animation1 => {
