@@ -27,10 +27,20 @@ const TabNavigator = createBottomTabNavigator({
   RESUMEN: createStackNavigator({
     RESUMEN: Home,
     VENTAS: Ventas,
-    AUXPIECHART: Lottie,
-    REPORTEVENTAS: ReporteVentas,
-    REPORTEGASTOS: ReporteGastos,
-    headerMode: 'screen',
+    AUXPIECHART: createStackNavigator({
+      AUXPIECHART: Lottie,
+      REPORTEVENTAS: ReporteVentas,
+      REPORTEGASTOS: ReporteGastos,
+      headerMode: 'screen',
+    },
+    {
+      defaultNavigationOptions: {
+        headerShown: false,
+      }
+    })
+    
+    
+    
   },
     {
       defaultNavigationOptions: {
@@ -58,14 +68,14 @@ const TabNavigator = createBottomTabNavigator({
       }
     }),
 
-  // RESULTADOS: createStackNavigator({
-  //   RESULTADOS: Resultados,
-  // },
-  // { 
-  //   defaultNavigationOptions: { 
-  //    headerShown: false,
-  //  }
-  // }),
+  RESULTADOS: createStackNavigator({
+    RESULTADOS: Resultados,
+  },
+  { 
+    defaultNavigationOptions: { 
+     headerShown: false,
+   }
+  }),
 
   FONDOS: createStackNavigator({
     FONDOS: Fondos,//ScreenMotion, //SOLO PARA TESTING, IRIA EN VENTAS ORIGINALMENTE
@@ -76,6 +86,7 @@ const TabNavigator = createBottomTabNavigator({
       headerShown: false,
     }
   }),
+
 },
   {
     defaultNavigationOptions: ({ navigation }) => ({
@@ -99,8 +110,8 @@ const TabNavigator = createBottomTabNavigator({
     }),
 
     tabBarOptions: {
-      activeTintColor: 'green',
-      backgroundColor: 'green',
+      activeTintColor: 'red',
+      backgroundColor: 'red',
       keyboardHidesTabBar: false,
       tabStyle: {
         backgroundColor: '#000',
