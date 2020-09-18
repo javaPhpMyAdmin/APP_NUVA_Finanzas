@@ -56,7 +56,7 @@ export default NuevoGasto = () =>{
                 initialValues={
                     {
                         proveedor: '', 
-                        numero_documento:'', 
+                        numero_documento:'E2000001', 
                         fecha_gasto: new Date(), 
                         moneda:'pesos',
                         importe: '',
