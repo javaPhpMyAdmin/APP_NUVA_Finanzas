@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    paddingTop: Constants.statusBarHeight,
+    paddingTop: 5,//Constants.statusBarHeight,
     backgroundColor: '#000',
     padding: 5,
   },
