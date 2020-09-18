@@ -19,14 +19,14 @@ export default class GraficoVentas extends React.Component {
             max: 0,
             barChartHeight: 0,
             items: [
-                { value: 400, month: 'Enero' },
-                { value: 70, month: 'Febrero' },
-                { value: 1000, month: 'Marzo' },
-                { value: 50, month: 'Abril' },
-                { value: 500, month: 'Mayo' },
-                { value: 500, month: 'Junio' },
-                { value: 400, month: 'Julio' },
-                { value: 70, month: 'Agosto' },
+                { value: 133, month: 'Enero' },
+                { value: 452, month: 'Febrero' },
+                { value: 125, month: 'Marzo' },
+                { value: 401, month: 'Abril' },
+                { value: 133, month: 'Mayo' },
+                { value: 452, month: 'Junio' },
+                { value: 125, month: 'Julio' },
+                { value: 401, month: 'Agosto' },
                 { value: 600, month: 'Setiembre' },
                 { value: 50, month: 'Octubre' },
                 { value: 30, month: 'Noviembre' },
@@ -58,7 +58,7 @@ export default class GraficoVentas extends React.Component {
 
     getBarChartHeight(heightScreen) {
         this.setState({
-            barChartHeight: heightScreen - variables.toolbarHeight - 134
+            barChartHeight: heightScreen - variables.toolbarHeight - 210
         })
     }
 
@@ -82,6 +82,7 @@ export default class GraficoVentas extends React.Component {
         return (
 
             <BarChart
+                mes={month}
                 key={'barChart' + index}
                 height={barChartHeight}
                 valueY={floor(valueY, 2)}
@@ -132,6 +133,15 @@ export default class GraficoVentas extends React.Component {
                         </LinearGradient>
                     </TouchableOpacity>
 
+                </View>
+
+                <View style={{flexDirection: 'row', paddingBottom:15,paddingTop:20, justifyContent: 'space-between'}}>
+                    <Text style={{color:'white', paddingLeft:12,fontSize: 25, fontWeight: 'bold'}}>Anual</Text>
+                    <Text style={{color:'white', fontSize: 25, fontWeight: '700'}}>$ 1,111</Text>
+                    <TouchableOpacity onPress={()=>{}}>
+                        <Text style={{color:'white', paddingRight: 15, fontSize: 20, fontStyle: 'italic', paddingTop:5}}>Reporte</Text>
+                    </TouchableOpacity>
+                    
                 </View>
 
                 <ScrollView /*onLayout={(e)=>{this._onLayout(e)}}*/ alwaysBounceHorizontal={false} horizontal={true}>
