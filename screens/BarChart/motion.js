@@ -45,10 +45,12 @@ export default class ScreenMotion extends React.Component {
         const { barChartHeight } = this.state
         const valueY = value * barChartHeight / maxValue
        
+        console.log('mes desde barchart:', month)
 
         return (
 
             <BarChart
+                mes={month}
                 key={'barChart' + index}
                 height={barChartHeight}
                 valueY={floor(valueY, 2)}
