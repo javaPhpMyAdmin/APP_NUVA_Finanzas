@@ -15,12 +15,15 @@ import NuevoMovimiento from '../screens/NuevoMovimiento'
 import Lottie from '../screens/auxPieChart'
 import ModificarMovimiento from '../screens/ModificarMovimiento'
 
+import ReporteVentas from '../screens/ReporteVentas'
+import ReporteGastos from '../screens/ReporteGastos'
+
 import Shared from '../TestShared/index'
 //
 
 const StackNavigator = createStackNavigator({
     SplashScreen: {
-        screen: Shared,//SplashComponent,
+        screen: SplashComponent,//ReporteVentas,////Shared,
         navigationOptions: {
             headerShown: false
         }
