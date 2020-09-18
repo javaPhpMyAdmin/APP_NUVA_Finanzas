@@ -43,7 +43,7 @@ export default NuevaVenta = ({ navigation }) => {
                     initialValues={
                         {
                             cliente: '',
-                            numero_documento: '',
+                            numero_documento: 'I2000001',
                             fecha_venta: new Date(),
                             moneda: 'pesos',
                             importe: '',
@@ -92,7 +92,7 @@ export default NuevaVenta = ({ navigation }) => {
                             <View style={{ flexDirection: 'row', paddingTop: 15, width: '100%', height: 110 }}>
                                 <Text style={[styles.text_footer, { marginTop: 35 }]}>
                                     Fecha
-                        </Text>
+                                </Text>
                                 {
                                     showData ?
 
@@ -251,7 +251,7 @@ export default NuevaVenta = ({ navigation }) => {
                                 </View>
                             </View>
 
-                            <Text style={[styles.text_footer, { marginTop: 35 }]}>
+                         {/*   <Text style={[styles.text_footer, { marginTop: 35 }]}>
                                 Tipo de Pago
                     </Text>
                             <View style={styles.action}>
@@ -262,7 +262,7 @@ export default NuevaVenta = ({ navigation }) => {
                                     onChangeText={props.handleChange('tipo_de_pago')}
                                 />
 
-                            </View>
+                                    </View>*/}
 
                             <TouchableOpacity
                                 onPress={() => props.handleSubmit()}
